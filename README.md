@@ -3,6 +3,7 @@ The basic idea behind this project is to allow non-programmers to navigate and q
 
 ## Example:
 
+```
 -- Queries an API endpoint using summoner name
 nav summoners -summonerName "username"
 -- Queries the matchlists endpoint using the encryptedAccountId, which was returning by the
@@ -17,6 +18,7 @@ nav matches
 store participantIdentities[player.summonerName=\'{summonerName}\'].participantId participantId
 -- Prints the last champion that participant above played
 printq participants[{participantId}].championId
+```
 
 ## TODO
 - The query parsing needs to be completely remade.
