@@ -1,0 +1,7 @@
+# Required: summonerName
+nav summoners
+nav matchlists
+filter matches[0]
+nav matches
+store participantIdentities[player.summonerName=\'{summonerName}\'].participantId participantId
+printq participants[{participantId}].championId

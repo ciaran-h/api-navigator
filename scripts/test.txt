@@ -1,0 +1,7 @@
+for summonerName in Darqk Invokehades FarmReid
+
+    nav summoners
+    nav matchlists
+
+    print {summonerName}
+    printq totalGames

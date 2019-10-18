@@ -1,0 +1,8 @@
+summoners
+	summonerName = name
+	encryptedAccountId = accountId
+matches
+	participantId = participantIdentities[*].participantId
+	queueId = queueId
+matchlists
+	matchId = matches[*].gameId

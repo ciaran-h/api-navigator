@@ -1,0 +1,4 @@
+# Required: summonerName
+nav summoners
+nav matchlists
+printq matches[*].champion

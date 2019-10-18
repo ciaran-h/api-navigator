@@ -1,0 +1,27 @@
+EXPLICIT: summoner{summonerName=Darqk} accountId -> matchlists{encryptedAccountId=?} matches[0]
+IMPLICIT: summoner{summonerName=Darqk} -> matchlist matches[0]
+
+
+summoner{summonerName=darqk,encryptedSummonerId=h7yrvffb32} -> matchlists matches[0] participantIdentities[0]
+- summoner{summonerName=darqk} accountId
+- matchlists{accountId=?} matches[0].gameId
+- matchlists{accountId=?} participantIdentities[0].player.accountID
+
+summoners{summonerName=darqk} -> matchlists matches[lane='BOTTOM'] -> matches participants[*].highestAchievedSeasonTier
+
+summoners{summonerName=darqk} -> matchlists matches[lane='BOTTOM'] -> matches participantIdentities[player.summonerName='Darqk'] -> matches participants[*].championId
+
+# Get the most recent BOTTOM champion Darqk played
+summoners{summonerName=darqk} -> matchlists matches[lane='BOTTOM'] -> matches participantIdentities[player.summonerName='Darqk'].participantId -> matches participants[*].championId
+
+# Get the last 10 champions that Darqk, Invokehades, and FarmReid played
+for name in (Darqk, Invokehades, FarmReid): summoners{summonerName={name}} -> for i in range(10): matchlists matches[{i}] -> matches participantIdentities[player.summonerName={name}].participantId = participantId | participants[{participantId}].championId
+
+summoners{summonerName=darqk} -> matchlists matches[lane not like "NONE"] -> matches participantIdentities[player.summonerName='Darqk']
+
+start summoners{summonerName=Darqk}
+nav matchlists 
+filter matches[lane="BOTTOM"]
+nav matches
+save participantIdentities[player.summonerName={summonerName}].participantId participantId
+print participants[{participantId}].championId

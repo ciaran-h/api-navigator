@@ -1,0 +1,25 @@
+# Print the most recent BOT champion Darqk played
+nav "summoners" -summonerName "Darqk"
+nav "matchlists"
+filter "matches[lane='BOTTOM']"
+nav "matches"
+store "participantIdentities[player.summonerName={summonerName}].participantId" "participantId"
+print "participants[{participantId}].championId"
+
+# Write list of summoners in game to workbook
+open "C:/Path/To/My/Workbook.xlsx"
+write "participantIdentities[*].player.summonerName" -c "Summoner Names" -s "Sheet 1"
+close
+
+# Save list of summoners as JSON file
+save "participantIdentities[*].player.summonerName" "C:/Path/To/File.json"
+
+
+# Print the last 10 game modes Darqk, Invokehades and FarmReid played
+for name in "Darqk", "Invokehades", "FarmReid": nav "summoners" -summonerName {name}
+| for i in range(10): nav "matchlists" -path "matches[lane='BOTTOM']"
+| nav "matches"
+| print gameMode
+
+# Testing
+nav "summoners" -summonerName "Darqk" | nav "matchlists" 

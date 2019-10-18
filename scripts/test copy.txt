@@ -1,0 +1,11 @@
+for summonerName in Darqk Invokehades FarmReid
+
+    nav summoners
+    nav matchlists
+
+    for i in 0 1 2 3 4
+    
+        filter matches[{i}]
+        nav matches
+        store participantIdentities[player.summonerName=\'{summonerName}\'].participantId participantId
+        print participants[{participantId}].championId
